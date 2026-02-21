@@ -2,7 +2,6 @@ import json
 import os
 from time import sleep
 
-import openai
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -24,6 +23,7 @@ def save_history(history):
         json.dump(history, f, indent=4)
     os.replace(temp_file, STORAGE_FILE)
 
+
 def trim_history(history):
     if len(history) > CONTEXT_LIMIT:
         return history[-CONTEXT_LIMIT:]
@@ -36,7 +36,6 @@ def main():
 
     api_key = os.getenv("OPENAI_API_KEY")
     client = OpenAI(api_key=api_key)
-    conversation = openai.conversations.create()
 
     character = input("Enter character name: ")
     setting = input("Enter setting: ")
@@ -45,7 +44,6 @@ def main():
 
     prompt = f"Write a fun short story about a character {character} in a {setting} setting who faces the problem {problem}. The ending should be {ending}."
     history.append({"role": "user", "content": prompt})
-    history = trim_history(history)
 
     print("waiting for the response...")
 
@@ -54,7 +52,11 @@ def main():
         input=history
     )
 
-    print(response.output_text)
+    ai_message = response.choices[0].message.content
+    print(f"API response: {ai_message}")
+
+    history.append({"role": "assistant", "content": ai_message})
+    save_history(history)
 
     while True:
         try:
@@ -67,13 +69,20 @@ def main():
 
             print("waiting for the response...")
 
+            history.append({"role": "user", "content": prompt})
+            history = trim_history(history)
+
             response = client.responses.create(
                 model="gpt-5-nano",
-                input=prompt,
-                conversation=conversation.id
+                input=history
             )
 
-            print(response.output_text)
+            ai_message = response.choices[0].message.content
+            print(f"API response: {ai_message}")
+
+            history.append({"role": "assistant", "content": ai_message})
+            history = trim_history(history)
+            save_history(history)
 
         except KeyboardInterrupt:
             print("\nExiting...")
