@@ -1,16 +1,8 @@
 title: OpenAI API Storytelling Lessons
 description: A structured series of lessons on the OpenAI API.
 theme: jekyll-theme-midnight
-remote_theme: pages-themes/midnight@v0.2.0
+remote_theme: pages-themes/hacker@v0.2.0
 
-# This tells Jekyll to include your subdirectories
-include:
-  - 0_story_generator
-  - 1_story_followup
-  - 2_story_loop
-  - 3_story_local_context
-
-# Standard GitHub Pages configuration
 url: "https://oxeg.github.io"
 baseurl: "/openaiapi"
 github:
