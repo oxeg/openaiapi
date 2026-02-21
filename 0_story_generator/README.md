@@ -19,7 +19,11 @@ This script demonstrates the basic "Request-Response" cycle:
 
 ## Setup
 1. Create a `.env` file in the project root.
-2. Add your key: `OPENAI_API_KEY=your_actual_key_here`
+2. Add your key and model:
+```
+OPENAI_API_KEY=your_actual_key_here
+OPENAI_MODEL=gpt-5-nano
+```
 
 ## How to Run
 1. Navigate to this directory.
@@ -38,4 +42,5 @@ waiting for the response...
 ## Notes & Documentation
 - **Model Documentation**: [OpenAI Models Guide](https://platform.openai.com/docs/models)
 - **API Reference**: [Create Response](https://platform.openai.com/docs/api-reference/responses/create)
+- The script uses the model specified in your `.env` file via the `OPENAI_MODEL` variable.
 - Always ensure your `.env` is in your `.gitignore` to prevent leaking secrets.

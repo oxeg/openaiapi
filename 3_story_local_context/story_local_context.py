@@ -35,6 +35,7 @@ def main():
     history = load_history()
 
     api_key = os.getenv("OPENAI_API_KEY")
+    model = os.getenv("OPENAI_MODEL")
     client = OpenAI(api_key=api_key)
 
     character = input("Enter character name: ")
@@ -48,7 +49,7 @@ def main():
     print("waiting for the response...")
 
     response = client.responses.create(
-        model="gpt-5-nano",
+        model=model,
         input=history
     )
 
@@ -73,7 +74,7 @@ def main():
             history = trim_history(history)
 
             response = client.responses.create(
-                model="gpt-5-nano",
+                model=model,
                 input=history
             )
 

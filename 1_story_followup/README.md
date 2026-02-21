@@ -19,7 +19,11 @@ This script builds on Lesson 0 but adds a follow-up step:
 - **SDK**: `pip install openai python-dotenv`
 
 ## Setup
-1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY`.
+1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY` and `OPENAI_MODEL`.
+```
+OPENAI_API_KEY=your_actual_key_here
+OPENAI_MODEL=gpt-5-nano
+```
 
 ## How to Run
 1. Navigate to this directory.
@@ -43,4 +47,5 @@ waiting for the response...
 ## Notes & Documentation
 - **API Reference**: [Response Object (ID)](https://platform.openai.com/docs/api-reference/responses/object)
 - **Response Creation**: [Using previous_response_id](https://platform.openai.com/docs/api-reference/responses/create)
+- The script uses the model specified in your `.env` file via the `OPENAI_MODEL` variable.
 - Note: This is an efficient way to link two messages without sending a full history array.

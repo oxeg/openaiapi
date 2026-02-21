@@ -22,7 +22,11 @@ This is our most advanced script:
 - **SDK**: `pip install openai python-dotenv`
 
 ## Setup
-1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY`.
+1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY` and `OPENAI_MODEL`.
+```
+OPENAI_API_KEY=your_actual_key_here
+OPENAI_MODEL=gpt-5-nano
+```
 
 ## How to Run
 1. Navigate to this directory.
@@ -47,4 +51,5 @@ API response: [Story continues]
 ## Notes & Documentation
 - **API Reference**: [Input (History Array)](https://platform.openai.com/docs/api-reference/responses/create)
 - **OpenAI Developer Guide**: [Managing Context](https://platform.openai.com/docs/guides/text-generation)
+- The script uses the model specified in your `.env` file via the `OPENAI_MODEL` variable.
 - Note: This is a powerful pattern for building persistent AI assistants.

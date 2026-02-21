@@ -20,7 +20,11 @@ This script is a real-world example of an interactive chatbot loop:
 - **SDK**: `pip install openai python-dotenv`
 
 ## Setup
-1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY`.
+1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY` and `OPENAI_MODEL`.
+```
+OPENAI_API_KEY=your_actual_key_here
+OPENAI_MODEL=gpt-5-nano
+```
 
 ## How to Run
 1. Navigate to this directory.
@@ -47,4 +51,5 @@ What's next? quit
 ## Notes & Documentation
 - **API Reference**: [Conversations Create](https://platform.openai.com/docs/api-reference/conversations/create)
 - **API Reference**: [Using conversation_id](https://platform.openai.com/docs/api-reference/responses/create)
+- The script uses the model specified in your `.env` file via the `OPENAI_MODEL` variable.
 - Note: This approach handles the server-side memory for you.

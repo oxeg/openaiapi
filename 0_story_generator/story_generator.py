@@ -8,6 +8,7 @@ def main():
     load_dotenv()
 
     api_key = os.getenv("OPENAI_API_KEY")
+    model = os.getenv("OPENAI_MODEL")
 
     client = OpenAI(api_key=api_key)
 
@@ -21,7 +22,7 @@ def main():
     print("waiting for the response...")
 
     response = client.responses.create(
-        model="gpt-5-nano",
+        model=model,
         input=prompt
     )
 
