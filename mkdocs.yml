@@ -2,6 +2,7 @@ site_name: OpenAI API Storytelling Lessons
 site_url: https://oxeg.github.io/openaiapi/
 repo_url: https://github.com/oxeg/openaiapi
 site_description: A structured series of lessons on the OpenAI API.
+docs_dir: .
 
 theme:
   name: material
