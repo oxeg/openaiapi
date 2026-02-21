@@ -47,5 +47,6 @@ waiting for the response...
 ## Notes & Documentation
 - **API Reference**: [Response Object (ID)](https://platform.openai.com/docs/api-reference/responses/object)
 - **Response Creation**: [Using previous_response_id](https://platform.openai.com/docs/api-reference/responses/create)
+- **OpenAI Conversation state**: https://developers.openai.com/api/docs/guides/conversation-state/
 - The script uses the model specified in your `.env` file via the `OPENAI_MODEL` variable.
 - Note: This is an efficient way to link two messages without sending a full history array.

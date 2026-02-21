@@ -51,5 +51,6 @@ What's next? quit
 ## Notes & Documentation
 - **API Reference**: [Conversations Create](https://platform.openai.com/docs/api-reference/conversations/create)
 - **API Reference**: [Using conversation_id](https://platform.openai.com/docs/api-reference/responses/create)
+- **OpenAI Conversation state**: https://developers.openai.com/api/docs/guides/conversation-state/
 - The script uses the model specified in your `.env` file via the `OPENAI_MODEL` variable.
 - Note: This approach handles the server-side memory for you.
