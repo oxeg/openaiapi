@@ -1,0 +1,34 @@
+site_name: OpenAI API Storytelling Lessons
+site_url: https://oxeg.github.io/openaiapi/
+repo_url: https://github.com/oxeg/openaiapi
+site_description: A structured series of lessons on the OpenAI API.
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+
+nav:
+  - Welcome: README.md
+  - Lessons:
+    - Lesson 0 - Basic Generation: 0_story_generator/README.md
+    - Lesson 1 - Response IDs: 1_story_followup/README.md
+    - Lesson 2 - Conversation IDs: 2_story_loop/README.md
+    - Lesson 3 - Local Context: 3_story_local_context/README.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
