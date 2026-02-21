@@ -4,22 +4,23 @@ An advanced story generator that maintains conversation history locally, allowin
 
 ## Description
 
-This script manages the conversation context manually by saving the history to a local JSON file. It features:
-- **Local Storage**: Saves the conversation history to a file named `.agent`.
-- **Context Management**: Automatically trims the history to the last 10 messages (`CONTEXT_LIMIT`) to stay within token limits and maintain relevance.
-- **System Prompt**: Uses a predefined system role to guide the AI's behavior as a short story writer.
-- **Persistence**: If you restart the script, it can load the previous state from the `.agent` file.
+This script manages the conversation context manually by saving the history to a local JSON file, ensuring the AI behaves as a consistent story writer:
+- **Local Persistence**: Saves the entire conversation history to a `.agent` file.
+- **Context Management**: Trims the history to the last 10 messages (`CONTEXT_LIMIT`) to maintain relevance and stay within limits.
+- **System Role**: Uses a "system" prompt to define the AI's persona as a short story writer.
+- **Interaction**: Features an ongoing loop where users can continue the story through "What's next?" prompts.
 
 ## Prerequisites
 
 Before running this script, ensure you have:
 
 1. **Python 3.7+** installed on your system
-2. **OpenAI API Key**: You'll need an active OpenAI API key.
+2. **OpenAI API Key**: You'll need an active OpenAI API key. You can get one from [OpenAI's platform](https://platform.openai.com/)
 3. **Required Python packages**: Install dependencies using pip:
 ```shell script
 pip install openai python-dotenv
 ```
+
 
 ## Setup
 
@@ -29,18 +30,22 @@ pip install openai python-dotenv
 OPENAI_API_KEY=your_api_key_here
 ```
 
+
 ## How to Run
 
-1. Navigate to the `3_story_local_context` directory in your terminal
+1. Navigate to the project directory in your terminal
 2. Run the script:
 ```shell script
 python story_local_context.py
 ```
 
-3. Enter the initial story elements.
-4. Continue the interaction using the "What's next?" prompt.
-5. Type `quit` or `exit` to stop.
-6. Observe that a `.agent` file is created/updated in the directory, storing your conversation history.
+3. Follow the prompts to enter your story elements:
+   - Character name
+   - Setting
+   - Problem
+   - Ending type
+4. Use the "What's next?" prompt to continue the narrative.
+5. Type `quit` or `exit` to end the session.
 
 ## Example Usage
 
@@ -57,9 +62,9 @@ waiting for the response...
 API response: [Story continues]
 ```
 
+
 ## Notes
 
-- The conversation history is stored in `.agent` as a JSON list of message objects.
-- A `.agent.tmp` file is used during saving to ensure data integrity.
-- The `trim_history` function ensures the context sent to the API doesn't grow indefinitely.
-- Uses the `gpt-5-nano` model.
+- The script uses OpenAI's `gpt-5-nano` model for story generation
+- Make sure your `.env` file is never committed to version control (add it to `.gitignore`)
+- API usage may incur costs depending on your OpenAI plan
