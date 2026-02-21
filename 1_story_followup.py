@@ -4,37 +4,43 @@ from time import sleep
 from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv()
 
-api_key = os.getenv("OPENAI_API_KEY")
+def main():
+    load_dotenv()
 
-client = OpenAI(api_key=api_key)
+    api_key = os.getenv("OPENAI_API_KEY")
 
-character = input("Enter character name: ")
-setting = input("Enter setting: ")
-problem = input("Enter problem: ")
-ending = input("Enter ending: ")
+    client = OpenAI(api_key=api_key)
 
-prompt = f"Write a fun short story about a character {character} in a {setting} setting who faces the problem {problem}. The ending should be {ending}."
+    character = input("Enter character name: ")
+    setting = input("Enter setting: ")
+    problem = input("Enter problem: ")
+    ending = input("Enter ending: ")
 
-print("waiting for the response...")
+    prompt = f"Write a fun short story about a character {character} in a {setting} setting who faces the problem {problem}. The ending should be {ending}."
 
-story = client.responses.create(
-    model="gpt-5-nano",
-    input=prompt
-)
+    print("waiting for the response...")
 
-print(story.output_text)
+    story = client.responses.create(
+        model="gpt-5-nano",
+        input=prompt
+    )
 
-sleep(2)
+    print(story.output_text)
 
-followup = input("Write a follow-up question for the story: ")
-print("waiting for the response...")
+    sleep(2)
 
-answer = client.responses.create(
-    model="gpt-5-nano",
-    input=followup,
-    previous_response_id=story.id
-)
+    followup = input("Write a follow-up question for the story: ")
+    print("waiting for the response...")
 
-print(answer.output_text)
+    answer = client.responses.create(
+        model="gpt-5-nano",
+        input=followup,
+        previous_response_id=story.id
+    )
+
+    print(answer.output_text)
+
+
+if __name__ == "__main__":
+    main()
