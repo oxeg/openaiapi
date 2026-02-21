@@ -52,10 +52,10 @@ def main():
         input=history
     )
 
-    ai_message = response.choices[0].message.content
-    print(f"API response: {ai_message}")
+    ai_response = response.output_text
+    print(f"API response: {ai_response}")
 
-    history.append({"role": "assistant", "content": ai_message})
+    history.append({"role": "assistant", "content": ai_response})
     save_history(history)
 
     while True:
@@ -77,10 +77,10 @@ def main():
                 input=history
             )
 
-            ai_message = response.choices[0].message.content
-            print(f"API response: {ai_message}")
+            ai_response = response.output_text
+            print(f"API response: {ai_response}")
 
-            history.append({"role": "assistant", "content": ai_message})
+            history.append({"role": "assistant", "content": ai_response})
             history = trim_history(history)
             save_history(history)
 
