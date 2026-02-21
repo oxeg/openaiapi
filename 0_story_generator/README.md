@@ -1,68 +1,41 @@
-# Story Generator
+# Lesson 0: Programmatic Text Generation
 
-A simple Python script that uses OpenAI's API to generate creative short stories based on user-provided story elements.
+## The Problem
+Manually typing prompts into a web interface is great for humans, but what if you want to build an application that generates content automatically based on user input? We need a way to capture specific variables (like a character name or a setting) and "inject" them into a prompt template that the AI can understand.
+
+## The Solution
+We use the OpenAI Python SDK to bridge the gap between user input and the AI model. By using f-strings in Python, we can programmatically construct a prompt and send it to the API, receiving a structured response that our application can then display.
 
 ## Description
-
-This script prompts the user to input four key story elements:
-- **Character name**: The protagonist of your story
-- **Setting**: Where the story takes place
-- **Problem**: The challenge or conflict the character faces
-- **Ending**: How the story concludes (e.g., "happy", "surprising", "tragic")
-
-The script then sends these elements to OpenAI's API, which generates a fun, creative short story incorporating all the provided details.
+This script demonstrates the basic "Request-Response" cycle:
+- **Input Collection**: Uses Python's `input()` to gather story elements.
+- **Prompt Engineering**: Combines those elements into a coherent instruction.
+- **API Call**: Uses `client.responses.create` to send the prompt to the `gpt-5-nano` model.
 
 ## Prerequisites
-
-Before running this script, ensure you have:
-
-1. **Python 3.7+** installed on your system
-2. **OpenAI API Key**: You'll need an active OpenAI API key. You can get one from [OpenAI's platform](https://platform.openai.com/)
-3. **Required Python packages**: Install dependencies using pip:
-```shell script
-pip install openai python-dotenv
-```
-
+- **Python 3.7+**: [Python Official Documentation](https://docs.python.org/3/)
+- **OpenAI API Key**: [OpenAI API Keys](https://platform.openai.com/api-keys)
+- **SDK**: Install via `pip install openai python-dotenv`
 
 ## Setup
-
-1. Create a `.env` file in the project root directory
-2. Add your OpenAI API key to the `.env` file:
-```
-OPENAI_API_KEY=your_api_key_here
-```
-
+1. Create a `.env` file in the project root.
+2. Add your key: `OPENAI_API_KEY=your_actual_key_here`
 
 ## How to Run
-
-1. Navigate to the project directory in your terminal
-2. Run the script:
-```shell script
-python story_generator.py
-```
-
-3. Follow the prompts to enter your story elements:
-   - Character name
-   - Setting
-   - Problem
-   - Ending type
-4. Wait for the AI to generate your story
-5. Enjoy your custom-generated short story!
+1. Navigate to this directory.
+2. Run: `python story_generator.py`
 
 ## Example Usage
-
 ```
-Enter character name: Luna the Cat
-Enter setting: enchanted forest
-Enter problem: lost magical bell
-Enter ending: heartwarming
+Enter character name: Orbit the Robot
+Enter setting: Mars colony
+Enter problem: out of oxygen
+Enter ending: heroic
 waiting for the response...
-[Generated story will appear here]
+[AI generates the story based on your variables]
 ```
 
-
-## Notes
-
-- The script uses OpenAI's `gpt-5-nano` model for story generation
-- Make sure your `.env` file is never committed to version control (add it to `.gitignore`)
-- API usage may incur costs depending on your OpenAI plan
+## Notes & Documentation
+- **Model Documentation**: [OpenAI Models Guide](https://platform.openai.com/docs/models)
+- **API Reference**: [Create Response](https://platform.openai.com/docs/api-reference/responses/create)
+- Always ensure your `.env` is in your `.gitignore` to prevent leaking secrets.

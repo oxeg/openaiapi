@@ -1,57 +1,39 @@
-# Story Local Context
+# Lesson 3: Manual Context Control and Local Persistence
 
-An advanced story generator that maintains conversation history locally, allowing for persistent context across script restarts.
+## The Problem: Persistence and Control
+Even with a conversation ID, everything is lost once the script stops. If your internet disconnects or you close the terminal, the story is gone. We also don't have direct control over exactly what the AI "sees" in its memory.
+
+Why do we want to manually manage history? Because it gives us total control over:
+1. **Persistence**: We can save the story to a file and reload it next year!
+2. **Context Trimming**: We can cut out old or irrelevant messages to stay within token limits.
+
+## The Solution: Local History Management
+We'll use a **JSON** file to store our conversation history on the computer's hard drive. Every time we send a new message, we load the history from the file, add our new message, send the whole history array to the AI, and then save the new response back to the file. This way, the "memory" is in your hands.
 
 ## Description
-
-This script manages the conversation context manually by saving the history to a local JSON file, ensuring the AI behaves as a consistent story writer:
-- **Local Persistence**: Saves the entire conversation history to a `.agent` file.
-- **Context Management**: Trims the history to the last 10 messages (`CONTEXT_LIMIT`) to maintain relevance and stay within limits.
-- **System Role**: Uses a "system" prompt to define the AI's persona as a short story writer.
-- **Interaction**: Features an ongoing loop where users can continue the story through "What's next?" prompts.
+This is our most advanced script:
+- **Local JSON Storage**: Saves the entire history to a `.agent` file.
+- **System Role**: We add a special "system" prompt to tell the AI it's a short story writer.
+- **Context Trimming**: We keep only the last 10 messages (`CONTEXT_LIMIT`) to maintain a clean and relevant conversation.
 
 ## Prerequisites
-
-Before running this script, ensure you have:
-
-1. **Python 3.7+** installed on your system
-2. **OpenAI API Key**: You'll need an active OpenAI API key. You can get one from [OpenAI's platform](https://platform.openai.com/)
-3. **Required Python packages**: Install dependencies using pip:
-```shell script
-pip install openai python-dotenv
-```
-
+- **Python 3.7+**: [Python 3 JSON Documentation](https://docs.python.org/3/library/json.html)
+- **OpenAI API Key**: [OpenAI Platform](https://platform.openai.com/)
+- **SDK**: `pip install openai python-dotenv`
 
 ## Setup
-
-1. Create a `.env` file in the project root directory
-2. Add your OpenAI API key to the `.env` file:
-```
-OPENAI_API_KEY=your_api_key_here
-```
-
+1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY`.
 
 ## How to Run
-
-1. Navigate to the project directory in your terminal
-2. Run the script:
-```shell script
-python story_local_context.py
-```
-
-3. Follow the prompts to enter your story elements:
-   - Character name
-   - Setting
-   - Problem
-   - Ending type
-4. Use the "What's next?" prompt to continue the narrative.
-5. Type `quit` or `exit` to end the session.
+1. Navigate to this directory.
+2. Run: `python story_local_context.py`
+3. Generate your story and continue it with follow-ups.
+4. Close the script and restart it to see how the AI "remembers" everything from before!
 
 ## Example Usage
-
 ```
 Enter character name: Silas
-Enter setting: neon city
+Enter setting: Neon City
 Enter problem: missing memory chip
 Enter ending: noir
 waiting for the response...
@@ -62,9 +44,7 @@ waiting for the response...
 API response: [Story continues]
 ```
 
-
-## Notes
-
-- The script uses OpenAI's `gpt-5-nano` model for story generation
-- Make sure your `.env` file is never committed to version control (add it to `.gitignore`)
-- API usage may incur costs depending on your OpenAI plan
+## Notes & Documentation
+- **API Reference**: [Input (History Array)](https://platform.openai.com/docs/api-reference/responses/create)
+- **OpenAI Developer Guide**: [Managing Context](https://platform.openai.com/docs/guides/text-generation)
+- Note: This is a powerful pattern for building persistent AI assistants.

@@ -1,69 +1,46 @@
-# Story Followup
+# Lesson 1: Using Previous Response ID for Context
 
-An extension of the story generator that allows users to ask a single follow-up question about the generated story.
+## The Problem: Statelessness
+By default, every API call is "stateless." This means the AI has no memory of what it told you in a previous request. If the AI writes a story about a character named Jax, and you then ask "What color is his suit?", the AI won't know who "he" is or that you're talking about the Jax story.
+
+Why can't we just write a followup without a response ID? Because without it, the AI is starting from a blank slate every time, and you'd have to re-explain the whole story in every new message.
+
+## The Solution: Response ID Referencing
+We use the **Response ID** from the first interaction as a "hook." By sending a `previous_response_id` in our second request, we're telling the AI to "look back at this specific previous message" for context. This allows for a simple two-step conversation without re-sending the entire story.
 
 ## Description
-
-This script prompts the user for four key story elements and then generates a story. After the story is created, it allows for a follow-up interaction:
-- **Story Generation**: Uses character, setting, problem, and ending to create an initial tale.
-- **Follow-up Question**: Prompts the user for a question about the story.
-- **Contextual Answer**: Uses OpenAI's `previous_response_id` to provide an answer that maintains context with the generated story.
+This script builds on Lesson 0 but adds a follow-up step:
+- **Story ID**: When the first story is generated, we capture its `id`.
+- **Contextual Follow-up**: We send a second question AND that `id` so the AI remembers the story's context.
 
 ## Prerequisites
-
-Before running this script, ensure you have:
-
-1. **Python 3.7+** installed on your system
-2. **OpenAI API Key**: You'll need an active OpenAI API key. You can get one from [OpenAI's platform](https://platform.openai.com/)
-3. **Required Python packages**: Install dependencies using pip:
-```shell script
-pip install openai python-dotenv
-```
-
+- **Python 3.7+**: [Python 3 Documentation](https://docs.python.org/3/)
+- **OpenAI API Key**: [OpenAI Platform](https://platform.openai.com/)
+- **SDK**: `pip install openai python-dotenv`
 
 ## Setup
-
-1. Create a `.env` file in the project root directory
-2. Add your OpenAI API key to the `.env` file:
-```
-OPENAI_API_KEY=your_api_key_here
-```
-
+1. Use the existing `.env` file in the project root with your `OPENAI_API_KEY`.
 
 ## How to Run
-
-1. Navigate to the project directory in your terminal
-2. Run the script:
-```shell script
-python story_followup.py
-```
-
-3. Follow the prompts to enter your story elements:
-   - Character name
-   - Setting
-   - Problem
-   - Ending type
-4. Once the story is generated, enter a follow-up question.
-5. Wait for the AI to answer based on the story's context.
+1. Navigate to this directory.
+2. Run: `python story_followup.py`
+3. Enter your story elements, wait for the AI's response, and then ask a follow-up question.
 
 ## Example Usage
-
 ```
-Enter character name: Jax the Robot
-Enter setting: a scrap yard
-Enter problem: running out of battery
-Enter ending: triumphant
+Enter character name: Jax
+Enter setting: Neon Tokyo
+Enter problem: missing memory card
+Enter ending: noir
 waiting for the response...
-[Initial story appears here]
+[Story text appears]
 
-Write a follow-up question for the story: Does Jax find a new power source?
+Write a follow-up question for the story: What was on the memory card?
 waiting for the response...
-[AI's contextual answer appears here]
+[AI's response based on the Jax story]
 ```
 
-
-## Notes
-
-- The script uses OpenAI's `gpt-5-nano` model for story generation
-- Make sure your `.env` file is never committed to version control (add it to `.gitignore`)
-- API usage may incur costs depending on your OpenAI plan
+## Notes & Documentation
+- **API Reference**: [Response Object (ID)](https://platform.openai.com/docs/api-reference/responses/object)
+- **Response Creation**: [Using previous_response_id](https://platform.openai.com/docs/api-reference/responses/create)
+- Note: This is an efficient way to link two messages without sending a full history array.
