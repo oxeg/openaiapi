@@ -1,7 +1,9 @@
 title: OpenAI API Storytelling Lessons
 description: A structured series of lessons on the OpenAI API.
 theme: jekyll-theme-midnight
-remote_theme: pages-themes/hacker@v0.2.0
+remote_theme: pages-themes/midnight@v0.2.0
+plugins:
+  - jekyll-remote-theme
 
 url: "https://oxeg.github.io"
 baseurl: "/openaiapi"
