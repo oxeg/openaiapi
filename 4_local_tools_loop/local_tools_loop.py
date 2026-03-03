@@ -125,9 +125,12 @@ def main():
 
             ai_response = response.output_text
             print(f"AI response: {ai_response}")
-            history += response.output
 
             for item in response.output:
+                item_dict = item.model_dump()
+                item_dict.pop("status", None)
+                history.append(item_dict)
+
                 if hasattr(item, 'type') and item.type == 'function_call':
                     print(f"AI run calls a tool: {item.name}")
 
@@ -154,6 +157,10 @@ def main():
                     )
 
                     print(response.output_text)
+                    for sub_item in response.output:
+                        sub_dict = sub_item.model_dump()
+                        sub_dict.pop("status", None)
+                        history.append(sub_dict)
 
             history = trim_history(history)
             save_history(history)
