@@ -2,3 +2,6 @@
 .env
 **/.agent
 .idea
+
+4_local_tools_loop/*
+!4_local_tools_loop/local_tools_loop.py
