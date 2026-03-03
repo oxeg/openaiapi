@@ -10,6 +10,7 @@ The lessons are organized progressively, with each step solving a specific techn
 - **[1_story_followup](./1_story_followup/)**: **Contextual Referencing**. Understand the "stateless" nature of APIs and how to use `previous_response_id` to link two messages together.
 - **[2_story_loop](./2_story_loop/)**: **Conversation Management**. Learn how to use `conversation_id` to create a stateful, interactive chat loop without manual message tracking.
 - **[3_story_local_context](./3_story_local_context/)**: **Persistence & Manual Control**. Build a professional-grade assistant that saves its history to a local JSON file and manages its own context window.
+- **[4_local_tools_loop](./4_local_tools_loop/)**: **Function Calling & Tool Use**. Learn how to give an AI "hands" by defining Python functions (tools) it can call to interact with your local file system and perform real-world tasks.
 
 ## Prerequisites
 
