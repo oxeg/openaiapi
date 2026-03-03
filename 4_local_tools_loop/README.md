@@ -42,5 +42,6 @@ AI response: I've created the file notes.txt with the content "Buy milk".
 
 ## Notes & Documentation
 - **Function Calling**: [OpenAI Guide: Function Calling](https://platform.openai.com/docs/guides/function-calling)
+- **API Compatibility**: When saving history, we use `item.model_dump().pop("status", None)`. This is because the API response includes a `status` field for metadata, but the API will throw an error if you try to send that same `status` field back as part of the `input` in the next request.
 - The AI does not execute the code itself; it sends a JSON object describing which function to call. Your local Python script is responsible for the actual execution, ensuring security and control.
 - This pattern is the foundation for building "Agents" that can browse the web, use databases, or control hardware.
